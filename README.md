@@ -243,3 +243,101 @@ Once your data is imported, Data Wrangler automatically:
 - **Creates a data flow**: Your import becomes the first step in a visual pipeline
 
 You'll see something like a flowchart with your imported dataset as the starting point. From here, you can add transformation steps, analyze data quality, and prepare your data for ML.
+## Task 3: Checking your data quality
+
+Now that we've got our data imported into Data Wrangler, it's time to actually look at what we're working with. This is probably the most important step - you can't build good models with bad data, so we need to understand what issues we're dealing with.
+
+### 3a: Quick data validation using the Data tab
+
+First, let's do a basic sanity check of our data:
+
+1. **Look at the Data tab**
+   - In your Data Wrangler flow, you should see your imported dataset as a node
+   - Click on that node to select it
+   - Look for a "Data" tab (usually at the bottom or side of the interface)
+   - Click on it to see your actual data
+
+2. **Scan through your data**
+   - This shows you the raw data in a table format
+   - Scroll through a few rows to get a feel for what you're working with
+   - Look for obvious issues like:
+     - Columns that are completely empty
+     - Weird characters or formatting issues
+     - Data that doesn't look right (like negative ages or impossible dates)
+     - Missing values showing up as blanks, "NULL", "N/A", etc.
+
+3. **Check the column headers**
+   - Make sure all your expected columns are there
+   - Verify the column names make sense
+   - Look at the data types (usually shown at the top of each column)
+
+This gives you a quick gut check - does the data look roughly like what you expected?
+
+### 3b: Deep dive with Data Quality and Insights Report
+
+Now for the real analysis. Data Wrangler has a built-in tool that automatically analyzes your data and spots issues:
+
+1. **Start the analysis**
+   - Right-click on your dataset node (or look for a "+" or ellipsis icon next to it)
+   - Choose "Get data insights" or "Add analysis"
+   - You'll see analysis options appear
+
+2. **Create the Data Quality and Insights Report**
+   - For "Analysis type", select **"Data Quality and Insights Report"**
+   - Give it a name: **"VijayPoCDataQualityAndInsights"**
+   - For "Target column", select **"Income"**
+   
+   **What's a target column in AI?** Think of it as the "answer" you want your AI model to predict. In machine learning, we use historical data to teach the computer to make predictions. The target column (also called the "label" or "dependent variable") is what we're trying to predict based on all the other columns (called "features").
+   
+   For example:
+   - If you want to predict house prices, "Price" would be your target column
+   - If you want to predict if an email is spam, "IsSpam" would be your target
+   - In our case, we're using "Income" as the target - so we're building a model that can predict someone's income based on their other characteristics
+   
+   The target column helps Data Wrangler understand which column is most important and analyze how well the other columns can help predict it.
+
+   - For "Problem type", choose either:
+     - **Regression** if you're trying to predict a number (like price, temperature, etc.)
+     - **Classification** if you're trying to predict categories (like yes/no, spam/not spam, etc.)
+   
+   **Quick rule**: If your target column data type is "String", choose **Classification**. If it's "Number", choose **Regression**.
+   
+   **For our Income example**: Since our Income column contains categories ("<=50K" or ">50K") rather than actual dollar amounts, we should select **"Classification"**. Even though we're dealing with income, the data is formatted as categories, not continuous numbers.
+
+3. **Choose your data size**
+   - Select **"Sampled dataset"** (this is the recommended default)
+   - **Sampled dataset**: Uses up to 200,000 rows (faster, good for initial exploration)
+   - **Full dataset**: Analyzes everything (slower, but more complete - costs extra compute time)
+   - For most cases, "Sampled dataset" is perfect to start with
+
+5. **Run the analysis**
+   - Click "Create" and wait for it to finish
+   - This usually takes a few minutes depending on your data size
+   
+   **Note**: Sometimes you might get an error like "Something went wrongOperatorCustomerError". This often happens when you select the wrong problem type - for example, choosing "Regression" when your target column contains categories instead of numbers. If you get this error, try switching between "Regression" and "Classification" to see which one works with your data.
+   
+   **Problem Type Tip**: If you get errors with "Regression" but "Classification" works, check your target column's data type. In our case, Income contains categories ("<=50K", ">50K") rather than actual numbers, so Classification is the right choice even though we're dealing with income data.
+
+### What the report tells you
+
+Once it's done, you'll get a comprehensive report that shows:
+
+**Summary section:**
+- How many missing values you have
+- Number of outliers (weird extreme values)
+- Data types for each column
+- Overall data quality score
+
+**Target analysis (if you picked a target):**
+- How balanced your target variable is
+- Distribution of values you're trying to predict
+- Potential issues with your target
+
+**Feature insights:**
+- Which columns are most useful for prediction
+- Columns that might be causing problems
+- Recommendations for data cleaning
+
+**Quick model results:**
+- A rough estimate of how well a model might perform on this data
+- Helps you understand if your data is even suitable for ML
