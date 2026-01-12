@@ -179,3 +179,67 @@ Once your domain and user are working:
 ---
 
 **Remember: Canvas costs $1.90/hour even when you're not actively using it. Always log out properly!**
+
+## Task 2: Getting your data into Canvas with Data Wrangler
+
+### What is Data Wrangler?
+
+Data Wrangler is basically Canvas's built-in data prep tool - think of it as your visual data cleaning assistant. Instead of writing code to clean and transform your data, you get a drag-and-drop interface where you can:
+
+- Import data from various sources (S3, databases, etc.)
+- See what your data looks like with automatic profiling
+- Clean up messy data with point-and-click transformations
+- Create a visual "flow" that shows exactly what you did to your data
+- Export the cleaned data for model training
+
+The cool thing is that Data Wrangler creates a visual pipeline of all your data prep steps, so you can see exactly what happened to your data and easily reproduce it later.
+
+### Importing CSV data from S3
+
+For this task, I'm assuming you already have a CSV file sitting in an S3 bucket. If you don't, just upload one through the S3 console first.
+
+Here's how to get your data from S3 into Canvas for cleaning:
+
+1. **Launch Canvas and find Data Wrangler**
+   - Open Canvas from your SageMaker console (like we did in Task 1)
+   - On the Canvas home page, look for "Import and prepare" 
+   - Click on it - this launches Data Wrangler
+
+2. **Start a new data flow**
+   - You'll see the Data Wrangler interface open up
+   - It might take a minute or two to load the first time
+   - You should see a "Create data flow" option or it might start automatically
+   - **Name your data flow**: Change the default name to "VijayDataPrepPoC" so it's easy to find later
+
+3. **Connect to your S3 data**
+   - Look for "Import data" or a similar button
+   - Choose "Amazon S3" as your data source
+   - You'll see a file browser showing your S3 buckets
+
+4. **Navigate to your CSV file**
+   - Browse through your S3 buckets to find your CSV file
+   - Click on the bucket name, then navigate through folders if needed
+   - When you find your CSV file, click on it
+
+5. **Preview and configure the import**
+   - Data Wrangler will show you a preview of your CSV
+   - Check if the column headers look right
+   - Make sure the data types look reasonable (it auto-detects them)
+   - You can adjust settings like:
+     - Whether the first row contains headers
+     - What delimiter is used (comma, semicolon, etc.)
+     - How to handle missing values
+
+6. **Import the data**
+   - Once the preview looks good, click "Import" or "Create dataset"
+   - Data Wrangler will pull in your data and create the first step in your data flow
+   - You'll see your dataset appear as a node in the visual flow
+
+### What happens after import
+
+Once your data is imported, Data Wrangler automatically:
+- **Analyzes your data**: Shows you statistics, missing values, data distributions
+- **Infers data types**: Tries to figure out if columns are numbers, text, dates, etc.
+- **Creates a data flow**: Your import becomes the first step in a visual pipeline
+
+You'll see something like a flowchart with your imported dataset as the starting point. From here, you can add transformation steps, analyze data quality, and prepare your data for ML.
