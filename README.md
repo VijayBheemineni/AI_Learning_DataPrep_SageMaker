@@ -314,7 +314,7 @@ Now for the real analysis. Data Wrangler has a built-in tool that automatically 
    - Click "Create" and wait for it to finish
    - This usually takes a few minutes depending on your data size
    
-   **Note**: Sometimes you might get an error like "Something went wrongOperatorCustomerError". This often happens when you select the wrong problem type - for example, choosing "Regression" when your target column contains categories instead of numbers. If you get this error, try switching between "Regression" and "Classification" to see which one works with your data.
+   **⚠️ ERROR**: Sometimes you might get an error like **"Something went wrongOperatorCustomerError"**. This often happens when you select the wrong problem type - for example, choosing "Regression" when your target column contains categories instead of numbers. If you get this error, try switching between "Regression" and "Classification" to see which one works with your data.
    
    **Problem Type Tip**: If you get errors with "Regression" but "Classification" works, check your target column's data type. In our case, Income contains categories ("<=50K", ">50K") rather than actual numbers, so Classification is the right choice even though we're dealing with income data.
 
