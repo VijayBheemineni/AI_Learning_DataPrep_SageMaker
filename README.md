@@ -625,3 +625,50 @@ As we saw earlier in the Data Quality report, our dataset contains duplicate row
 ![Drop Duplicates Configuration](images/VijayDropDuplicates.png)
 
 Your dataset is now clean, with no duplicate records cluttering your data!
+
+---
+
+## Task 11: Strip Spaces from String Features
+
+Text data often has extra spaces at the beginning or end of values - like " Manager" instead of "Manager" or "Sales ". These leading and trailing spaces can cause problems because the model treats " Manager" and "Manager" as completely different values, even though they mean the same thing. Let's clean this up by stripping spaces from all our string-type features.
+
+**Why strip spaces?**
+
+- Ensures consistent formatting across all text values
+- Prevents the model from treating identical values as different
+- Reduces the number of unique categories in categorical features
+- Improves data quality and model accuracy
+
+### Steps to Strip Spaces
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Format String**
+   - Look for "Format String" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"Strip left and right"**
+   - For "Input columns", select all 8 features of "string" type:
+     - workclass
+     - education
+     - marital-status
+     - occupation
+     - relationship
+     - race
+     - sex
+     - income
+   - For "Characters to remove", press the **space bar** (enter a single space)
+   - Click "Add" to apply the transformation
+
+5. **Verify the changes**
+   - Check a few string columns to confirm spaces are removed
+   - Values should now be consistently formatted without leading/trailing spaces
+
+![Strip Left and Right Configuration](images/VijayStripLeftRight.png)
+
+Your text data is now clean and consistently formatted!
