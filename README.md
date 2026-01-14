@@ -451,11 +451,53 @@ Let's create a histogram that shows how income is distributed across different d
 
 ![Income Distribution Histogram](images/HistogramIncome.png)
 
-**What to look for in the histogram:**
+---
 
-- **Class imbalance**: Are there way more people in one income bracket than another?
-- **Demographic patterns**: Do you see different distributions across race or sex?
-- **Data bias**: Is one group heavily overrepresented or underrepresented?
-- **Skewness**: Is the data heavily tilted toward one category?
+## Task 7: Analyzing Target Leakage
 
-If you spot major imbalances (like 90% in one category), you might need to use techniques like oversampling, undersampling, or class weights when training your model.
+**What is target leakage?**
+
+Imagine you are trying to predict whether a student will pass an exam. You have lots of information about the student: age, study hours, previous grades. But then, you accidentally include the exam score itself in the training data. That's target leakage — the model is learning from something it wouldn't know in real life.
+
+**Why it's a problem:**
+
+- Model looks amazing on training data → high accuracy
+- Model fails in production, because the leaked feature isn't available
+- Creates false confidence
+
+### Running a Target Leakage Analysis
+
+Data Wrangler has a built-in tool to help detect potential leakage in your dataset. Here's how to use it:
+
+**Steps to check for target leakage:**
+
+1. **Go to the Analyses tab**
+   - In your Data Wrangler flow, click on the "Analyses" tab
+   - Click the "+" button to add a new analysis
+
+2. **Create the leakage analysis**
+   - Click "Create Analysis"
+   - For "Analysis Type", select **"Target Leakage"**
+   - Give it a name: **"VijayTargetColumnLeakage"**
+
+3. **Configure the analysis**
+   - **Max Features**: Set to **15** (this limits how many features to analyze)
+   - **Problem Type**: Select **"Classification"**
+   - **Target**: Select **"Income"**
+
+4. **Review the results**
+   - Click "Create" and wait for the analysis to complete
+   - The report will show you which features might be leaking information about your target
+   - Look for features with suspiciously high predictive power (like 99%+ correlation)
+
+![Target Leakage Analysis](images/VijayTargetColumnLeakage.png)
+
+### Understanding ROC Scores
+
+**What is ROC?**
+
+ROC (Receiver Operating Characteristic) is basically a score that tells you how good a feature is at predicting your target variable. ROC value ranges from 0 to 1.
+
+**How to interpret the scores:**
+
+The provided predictive metric is ROC, computed individually for each column via cross validation, on a sample of 2038 rows. A score of 1 indicates perfect predictive abilities, which often indicates an error called target leakage. The cause is typically a column that will not be available at prediction time such as a duplicate of the target column. A score of 0.5 indicates that the information on the column could not provide, on its own, any useful information towards predicting the target. Although it can happen that a column is uninformative on its own but is useful in predicting the target when used in tandem with other features, a low score could indicate the feature is redundant.
