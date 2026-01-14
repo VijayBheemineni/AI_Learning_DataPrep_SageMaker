@@ -449,7 +449,7 @@ Let's create a histogram that shows how income is distributed across different d
    - Click "Create" and wait for the histogram to generate
    - You'll see the distribution of income levels broken down by race and sex
 
-![Income Distribution Histogram](images/HistogramIncome.png)
+![Income Distribution Histogram](images/VijayHistogramIncome.png)
 
 ---
 
