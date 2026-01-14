@@ -544,3 +544,47 @@ Keeping useless features in your dataset can actually hurt your model:
 ![Data Wrangler Flow - Drop Columns](images/VijayDataWranglerFlowDropColumn.png)
 
 Now your dataset is cleaner and only contains features that actually contribute to predicting income!
+
+---
+
+## Task 9: Handle Missing Values
+
+From the Feature Summary analysis, we discovered that two important features have missing values: "Occupation" has 5.66% missing values and "Workclass" has 5.64% missing values. While these percentages aren't huge, missing values can cause problems for machine learning models, so we need to deal with them.
+
+**Why handle missing values?**
+
+- Most ML algorithms can't work with missing data
+- Missing values can introduce bias into your model
+- They reduce the amount of usable data for training
+- They can lead to incorrect predictions
+
+**Our approach:** Since the percentage of missing values is relatively small (under 6%), we'll simply drop the rows that have missing values in these columns. This is a safe approach when you're not losing too much data.
+
+![Feature Summary - Missing Values](images/VijayFeatureSummary.png)
+
+### Steps to Drop Missing Values
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Handle Missing**
+   - Look for "Handle Missing" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"Drop Missing"**
+   - For "Input columns", select:
+     - **Occupation**
+     - **Workclass**
+   - Click "Add" to apply the transformation
+
+5. **Verify the changes**
+   - Check your dataset row count - it should be slightly smaller now
+   - The remaining rows should have no missing values in Occupation or Workclass
+
+![Drop Missing Values Configuration](images/VijayDropMissing.png)
+
+Now your dataset is complete with no missing values in these critical features, making it ready for model training!
