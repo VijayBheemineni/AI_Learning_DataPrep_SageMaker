@@ -501,3 +501,46 @@ ROC (Receiver Operating Characteristic) is basically a score that tells you how 
 **How to interpret the scores:**
 
 The provided predictive metric is ROC, computed individually for each column via cross validation, on a sample of 2038 rows. A score of 1 indicates perfect predictive abilities, which often indicates an error called target leakage. The cause is typically a column that will not be available at prediction time such as a duplicate of the target column. A score of 0.5 indicates that the information on the column could not provide, on its own, any useful information towards predicting the target. Although it can happen that a column is uninformative on its own but is useful in predicting the target when used in tandem with other features, a low score could indicate the feature is redundant.
+
+---
+
+## Task 8: Drop Unnecessary Columns
+
+Based on our target leakage analysis, we found that some columns have a ROC score of 0.5, which means they don't provide any useful information for predicting our target. Specifically, "native_country" and "fnlwgt" aren't helping our model at all, so we should remove them to simplify our dataset and potentially improve model performance.
+
+**Why drop these columns?**
+
+Keeping useless features in your dataset can actually hurt your model:
+- They add noise without adding value
+- They increase training time
+- They can confuse the model and reduce accuracy
+- They make your data harder to work with
+
+### Steps to Drop Columns
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+   - This shows your current dataset
+
+2. **Add a transformation**
+   - Click "Add transform" (usually a "+" button)
+   - This opens the transformation menu
+
+3. **Select Manage Columns**
+   - Look for "Manage Columns" in the transformation options
+   - Click on it to see column management options
+
+4. **Drop the columns**
+   - Select "Drop columns" or similar option
+   - For "Columns to Drop", select:
+     - **fnlwgt**
+     - **native_country**
+   - Click "Add" to apply the transformation
+
+5. **Verify the changes**
+   - Check that the columns are no longer visible in your dataset
+   - Your data flow should now show this transformation as a new step
+
+![Data Wrangler Flow - Drop Columns](images/VijayDataWranglerFlowDropColumn.png)
+
+Now your dataset is cleaner and only contains features that actually contribute to predicting income!
