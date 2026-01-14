@@ -588,3 +588,40 @@ From the Feature Summary analysis, we discovered that two important features hav
 ![Drop Missing Values Configuration](images/VijayDropMissing.png)
 
 Now your dataset is complete with no missing values in these critical features, making it ready for model training!
+
+---
+
+## Task 10: Drop Duplicate Records
+
+As we saw earlier in the Data Quality report, our dataset contains duplicate rows - identical records that appear more than once. Duplicates can skew your model's training by making it think certain patterns are more common than they actually are. Let's remove them to ensure each unique record appears only once.
+
+**Why remove duplicates?**
+
+- Prevents the model from overweighting certain patterns
+- Reduces dataset size without losing unique information
+- Improves model generalization
+- Avoids bias toward duplicated examples
+
+### Steps to Drop Duplicates
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Drop Rows**
+   - Look for "Drop Rows" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"Drop Duplicates"**
+   - Click "Add" to apply the transformation
+
+5. **Verify the changes**
+   - Check your dataset row count - it should be smaller if duplicates were found
+   - Each row in your dataset should now be unique
+
+![Drop Duplicates Configuration](images/VijayDropDuplicates.png)
+
+Your dataset is now clean, with no duplicate records cluttering your data!
