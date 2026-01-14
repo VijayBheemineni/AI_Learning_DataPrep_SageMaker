@@ -672,3 +672,65 @@ Text data often has extra spaces at the beginning or end of values - like " Mana
 ![Strip Left and Right Configuration](images/VijayStripLeftRight.png)
 
 Your text data is now clean and consistently formatted!
+
+---
+
+## Task 12: Transform Target Column to Binary Values
+
+Right now, our target column "income" contains text values like "<=50K" and ">50K". Machine learning models work much better with numbers than with strings, so we need to convert these text categories into numeric values. We'll transform "<=50K" to 1 (positive class) and ">50K" to 0 (negative class).
+
+**Why convert to numbers?**
+
+Models understand numbers better than strings like "<=50K" or ">50K". By converting to binary values (0 and 1), we make it easier for the model to learn patterns and make predictions.
+
+### 12a: Transform "<=50K" to 1
+
+First, let's convert all instances of "<=50K" to the number 1.
+
+**Steps:**
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Format String**
+   - Look for "Format String" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"Search and Edit"**
+   - For "Input Columns", select **"income"**
+   - For "Pattern", enter **"<=50K"**
+   - For "Replacement String", enter **"1"**
+   - Click "Add" to apply the transformation
+
+### 12b: Transform ">50K" to 0
+
+Now, let's convert all instances of ">50K" to the number 0.
+
+**Steps:**
+
+1. **Add another transformation**
+   - Click "Add Transform" again
+
+2. **Select Format String**
+   - Look for "Format String" in the transformation options
+   - Click on it
+
+3. **Configure the transformation**
+   - For "Transform", select **"Search and Edit"**
+   - For "Input Columns", select **"income"**
+   - For "Pattern", enter **">50K"**
+   - For "Replacement String", enter **"0"**
+   - Click "Add" to apply the transformation
+
+4. **Verify the changes**
+   - Check the income column - it should now contain only 1s and 0s
+   - 1 represents people earning <=50K
+   - 0 represents people earning >50K
+
+![Income Transform to Binary](images/VijayIncomeTransformToBinary.png)
+
+Your target column is now in the perfect format for model training!
