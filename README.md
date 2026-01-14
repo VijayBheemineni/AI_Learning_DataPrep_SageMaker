@@ -411,3 +411,51 @@ The Feature Summary section ranks all your columns by how useful they are for pr
 ### 5h: Feature Details - The Deep Dive
 
 Feature Details is where you can click into any specific column and get a really detailed breakdown of what's going on with it. You'll see histograms, statistics, correlations with your target column, and specific issues like outliers or unusual patterns. This is where I spend time when something looks off in the other sections - like if a feature has unexpectedly high importance or if I'm seeing weird patterns in my model results. It's basically a magnifying glass for each column, letting you understand exactly what values exist, how they're distributed, and whether there are any problems you need to fix before training your real model.
+
+---
+
+## Task 6: Target Label Classification Analysis
+
+Now that we've reviewed the overall data quality report, let's dig deeper into our target variable - the "Income" column. Understanding how your target variable is distributed is crucial before you start building models. This analysis helps us see if our data is balanced or if we have issues that could cause our model to perform poorly.
+
+**Why analyzing the target distribution matters:**
+
+1. **Detect imbalances**: If 95% of your data is one class and only 5% is another, your model might just predict the majority class all the time and still look "accurate"
+2. **Understand target variable**: See the actual breakdown of what you're trying to predict
+3. **Feature Engineering**: Identify skewed distributions that might need special handling or transformation
+4. **Avoid Model Mistakes**: Catch heavily imbalanced or biased data before wasting time training models that won't work
+
+### Creating a Histogram to Visualize Income Distribution
+
+Let's create a histogram that shows how income is distributed across different demographics in our dataset. This will help us spot any imbalances or patterns.
+
+**Steps to create the histogram:**
+
+1. **Go to the Analyses tab**
+   - In your Data Wrangler flow, look for the "Analyses" tab
+   - Click on the "+" button to add a new analysis
+
+2. **Create the analysis**
+   - Click "Create Analysis"
+   - For "Analysis type", select **"Histogram"**
+   - Give it a name: **"VijayTargetColumnHistogram"**
+
+3. **Configure the histogram**
+   - **X axis**: Select **"Income"** (this is our target variable)
+   - **Color By**: Select **"Race"** (this will show different colors for different races)
+   - **Facet By**: Select **"sex"** (this will create separate charts for male and female)
+
+4. **Review the results**
+   - Click "Create" and wait for the histogram to generate
+   - You'll see the distribution of income levels broken down by race and sex
+
+![Income Distribution Histogram](images/HistogramIncome.png)
+
+**What to look for in the histogram:**
+
+- **Class imbalance**: Are there way more people in one income bracket than another?
+- **Demographic patterns**: Do you see different distributions across race or sex?
+- **Data bias**: Is one group heavily overrepresented or underrepresented?
+- **Skewness**: Is the data heavily tilted toward one category?
+
+If you spot major imbalances (like 90% in one category), you might need to use techniques like oversampling, undersampling, or class weights when training your model.
