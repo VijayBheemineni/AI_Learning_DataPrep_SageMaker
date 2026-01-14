@@ -734,3 +734,46 @@ Now, let's convert all instances of ">50K" to the number 0.
 ![Income Transform to Binary](images/VijayIncomeTransformToBinary.png)
 
 Your target column is now in the perfect format for model training!
+
+---
+
+## Task 13: Remove Outliers from Capital Gain
+
+From the Feature Details analysis, we discovered that the "capital_gain" feature has approximately 3.06% outliers - extreme values that are way outside the normal range. Outliers can throw off your model's predictions by making it think these extreme cases are more common than they actually are. Let's remove these outliers to improve data quality.
+
+**Why remove outliers?**
+
+- Prevents the model from being skewed by extreme values
+- Improves model accuracy on typical cases
+- Reduces noise in the training data
+- Helps the model learn more generalizable patterns
+
+### Steps to Remove Outliers
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Handle Outliers**
+   - Look for "Handle Outliers" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"min-max numeric outliers"**
+   - For "Input columns", select **"capital_gain"**
+   - Click on **"Advanced"** to see more options
+   - For "Fix Method", select **"Remove"**
+   - For "Upper Threshold", enter **"80000"**
+   - For "Lower Threshold", enter **"0"**
+   - Click "Add" to apply the transformation
+
+5. **Verify the changes**
+   - Check your dataset row count - it should be slightly smaller
+   - The capital_gain column should now only contain values between 0 and 80,000
+   - Extreme outliers have been removed
+
+![Remove Capital Gain Outliers](images/VijayRemoveCapitalGainOutliers.png)
+
+Your dataset is now free from extreme outliers that could confuse the model!
