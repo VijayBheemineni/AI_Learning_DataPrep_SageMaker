@@ -1,6 +1,8 @@
 # AWS SageMaker Canvas Data Preparation Guide
 
-I've been working with SageMaker Canvas for data prep lately, and honestly, it's pretty powerful once you get it set up right. This guide walks through everything I've learned about getting your data ready for ML models using Canvas's visual interface - no coding required.
+This repository is part of my ongoing learning of AI and machine learning using Amazon SageMaker, with a specific focus on data preparation and feature analysis. It documents hands-on exploration of how data quality, encoding strategies, and validation techniques influence model behavior and downstream ML workflows.
+
+**Note**: This learning is based on AWS workshop and AWS provided data 'adult_data.csv'.
 
 ## ⚠️ **Heads up - Canvas can get expensive fast!** ⚠️
 
