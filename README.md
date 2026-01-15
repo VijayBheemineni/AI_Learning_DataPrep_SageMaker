@@ -823,3 +823,88 @@ We use ordinal encoding because ML models cannot do math on strings, and ordinal
 ![Ordinal Encode Configuration](images/VijayOrdinalEncode.png)
 
 Your categorical features are now encoded as numbers while preserving their meaningful order!
+
+---
+
+## Task 15: One-Hot Encoding
+
+Now we need to handle another type of categorical feature - ones that don't have a natural order. For these, we'll use one-hot encoding, which is different from the ordinal encoding we just did.
+
+**What is One-Hot Encoding?**
+
+One-hot encoding converts a categorical feature into multiple binary 0/1 columns, one per category.
+
+For example, the "sex" feature:
+```
+sex
+----
+Male
+Female
+```
+
+Gets converted to:
+```
+sex_male   sex_female
+1          0
+0          1
+```
+
+**Why do we need one-hot encoding?**
+
+ML models cannot understand strings. But why can't we just use numbers like we did with ordinal encoding? If we assign "Male: 1", "Female: 0", the ML model might assume a fake ordering where "Male" is greater than "Female". This introduces bias into the model.
+
+**When should we use One-Hot Encoding?**
+
+Generally used for features of type "Nominal" - categories that don't have a natural order, like "sex", "race", "country", "color".
+
+**Why is it called "One-Hot"?**
+
+Think of it like indicator lights. For example:
+```
+Red = 1
+Yellow = 2
+Green = 3
+```
+
+We don't want to tell the model "I picked Blue = 2". Instead, we ask:
+```
+Is Red?    Is Yellow?    Is Green?
+1          0             0
+```
+
+Only one of the options is "1" (hot/on), so it's called "One-Hot" encoding!
+
+### Steps to Apply One-Hot Encoding
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Encode Categorical**
+   - Look for "Encode Categorical" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"One-hot Encode"**
+   - For "Input Columns", select:
+     - **marital_status**
+     - **race**
+     - **relationship**
+     - **sex**
+     - **workclass**
+   - Click on **"Advanced"** to see more options
+   - For "Invalid Handling Strategy", select **"skip"**
+   - For "Output Style", select **"Columns"**
+   - Click "Add" to apply the transformation
+
+5. **Verify the changes**
+   - Your dataset should now have many more columns
+   - Each original categorical column has been replaced with multiple binary columns
+   - For example, "sex" becomes "sex_male" and "sex_female"
+   - Each row will have a 1 in exactly one column per original feature
+
+![One-Hot Encode Configuration](images/VijayOneHotEncode.png)
+
+Your nominal categorical features are now properly encoded without introducing false ordering!
