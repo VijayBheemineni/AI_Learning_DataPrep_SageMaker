@@ -999,3 +999,52 @@ XGBoost is used because it:
 ![Move Income to First Column](images/VijayMoveIncomeToFirstColumn.png)
 
 Your dataset is now properly formatted for XGBoost training!
+
+---
+
+## Task 17: Split Data into Train, Test, and Validation Sets
+
+Now that our data is fully cleaned and prepared, we need to split it into three separate datasets: Train, Test, and Validation. This is a crucial step in machine learning to ensure our model learns properly and we can evaluate its performance accurately.
+
+**Why split the data?**
+
+- **Train set (70%)**: Used to teach the model patterns in the data
+- **Test set (20%)**: Used to evaluate how well the model performs on unseen data
+- **Validation set (10%)**: Used during training to tune the model and prevent overfitting
+
+Think of it like studying for an exam: you practice with homework (train), check your understanding with practice tests (validation), and then take the final exam (test).
+
+### Steps to Split the Data
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Split Data**
+   - Look for "Split Data" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"Randomized Split"**
+   - Configure the splits:
+     - **Split 1**:
+       - Name: **Train**
+       - Split Percentage: **0.7** (70%)
+     - **Split 2**:
+       - Name: **Test**
+       - Split Percentage: **0.2** (20%)
+     - **Split 3**:
+       - Name: **Validation**
+       - Split Percentage: **0.1** (10%)
+   - Click "Preview" to see how the data will be split
+
+5. **Verify the split**
+   - Check that the percentages add up to 1.0 (100%)
+   - Confirm that each split has a reasonable number of rows
+   - The split should be randomized to avoid bias
+
+![Data Splitting Configuration](images/VijayDataSplitting.png)
+
+Your data is now properly split and ready for model training!
