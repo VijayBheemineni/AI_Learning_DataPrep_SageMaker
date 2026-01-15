@@ -908,3 +908,94 @@ Only one of the options is "1" (hot/on), so it's called "One-Hot" encoding!
 ![One-Hot Encode Configuration](images/VijayOneHotEncode.png)
 
 Your nominal categorical features are now properly encoded without introducing false ordering!
+
+---
+
+## Task 16: Move Target Column to First Position
+
+Some machine learning algorithms, like XGBoost (which we'll use for training), require the target column to be in the first position. Let's move our "income" column to the start of the dataset.
+
+**What is XGBoost?**
+
+XGBoost is an algorithm which is used to train the model. It's like a "recipe" and a model is the result after cooking.
+
+XGBoost (Extreme Gradient Boosting) is a powerful machine learning algorithm that builds many small decision trees sequentially, where each new tree focuses on correcting the mistakes of the previous ones.
+
+**Why are we using XGBoost?**
+
+XGBoost is used because it:
+- Works extremely well on tabular data
+- Handles non-linear relationships
+- Works with mixed data types
+- Handles missing values
+
+**What kind of problems is XGBoost good for?**
+- Classification
+- Regression
+- Tabular Data
+
+**What are other Common ML Algorithms?**
+
+🔹 **Linear Models**
+
+| Algorithm | Use case |
+|-----------|----------|
+| Linear Regression | Predict continuous values |
+| Logistic Regression | Binary classification |
+
+🔹 **Tree-Based Models**
+
+| Algorithm | Description |
+|-----------|-------------|
+| Decision Tree | Single tree |
+| Random Forest | Many independent trees |
+| XGBoost | Boosted trees (sequential) |
+| LightGBM | Faster gradient boosting |
+| CatBoost | Handles categorical data well |
+
+🔹 **Distance-Based Models**
+
+| Algorithm | Use case |
+|-----------|----------|
+| KNN | Similarity-based prediction |
+
+🔹 **Probabilistic Models**
+
+| Algorithm | Use case |
+|-----------|----------|
+| Naive Bayes | Text classification |
+
+🔹 **Neural Networks (Deep Learning)**
+
+| Algorithm | Use case |
+|-----------|----------|
+| ANN | General ML |
+| CNN | Images |
+| RNN / LSTM | Sequences |
+| Transformers | LLMs |
+
+### Steps to Move Target Column
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Manage Columns**
+   - Look for "Manage Columns" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"Move Column"**
+   - For "Move type", select **"Move to Start"**
+   - For "Column to move", select **"income"**
+   - Click "Add" to apply the transformation
+
+5. **Verify the changes**
+   - Check your dataset - the "income" column should now be the first column
+   - All other columns should remain in their original order
+
+![Move Income to First Column](images/VijayMoveIncomeToFirstColumn.png)
+
+Your dataset is now properly formatted for XGBoost training!
