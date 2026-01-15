@@ -777,3 +777,49 @@ From the Feature Details analysis, we discovered that the "capital_gain" feature
 ![Remove Capital Gain Outliers](images/VijayRemoveCapitalGainOutliers.png)
 
 Your dataset is now free from extreme outliers that could confuse the model!
+Your dataset is now free from extreme outliers that could confuse the model!
+
+---
+
+## Task 14: Ordinal Encoding
+
+Now we need to convert some of our categorical (text) features into numbers so the machine learning model can work with them. Ordinal encoding is the process of converting categories into numbers based on their natural order.
+
+**What is Ordinal Encoding?**
+
+Ordinal encoding is the process of converting categories into numbers based on order. For example, education levels have a natural progression: "High School" < "Bachelors" < "Masters" < "Doctorate". Ordinal encoding preserves this meaningful order by assigning numbers like 1, 2, 3, 4.
+
+**Why use Ordinal Encoding?**
+
+We use ordinal encoding because ML models cannot do math on strings, and ordinal encoding preserves meaningful order when that order exists. Features like education and occupation have inherent rankings that we want to maintain in our numeric representation.
+
+### Steps to Apply Ordinal Encoding
+
+1. **Go to the Data tab**
+   - In your Data Wrangler flow, click on the "Data" tab
+
+2. **Add a transformation**
+   - Click "Add Transform"
+
+3. **Select Encode Categorical**
+   - Look for "Encode Categorical" in the transformation options
+   - Click on it
+
+4. **Configure the transformation**
+   - For "Transform", select **"Ordinal Encode"**
+   - For "Input Columns", select:
+     - **education**
+     - **education_num**
+     - **occupation**
+   - Click on **"Advanced"** to see more options
+   - For "Invalid Handling Strategy", select **"skip"**
+   - Click "Add" to apply the transformation
+
+5. **Verify the changes**
+   - Check the selected columns - they should now contain numeric values instead of text
+   - The numeric values will preserve the natural ordering of the categories
+   - For example, "Bachelors" might become 2, "Masters" might become 3, etc.
+
+![Ordinal Encode Configuration](images/VijayOrdinalEncode.png)
+
+Your categorical features are now encoded as numbers while preserving their meaningful order!
