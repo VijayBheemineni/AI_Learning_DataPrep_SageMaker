@@ -1048,3 +1048,81 @@ Think of it like studying for an exam: you practice with homework (train), check
 ![Data Splitting Configuration](images/VijayDataSplitting.png)
 
 Your data is now properly split and ready for model training!
+
+---
+
+## Task 18: Export Train, Test, and Validation Datasets to S3
+
+This is the final step! Now that we've cleaned, transformed, and split our data, we need to export all three datasets (Train, Test, and Validation) to S3 so they can be used for model training.
+
+**Why export to S3?**
+
+- S3 provides durable, scalable storage for your processed datasets
+- Makes the data accessible to SageMaker training jobs
+- Allows you to reuse the cleaned data for multiple experiments
+- Keeps a permanent record of your data preparation work
+
+### Steps to Export Datasets
+
+We'll need to repeat these steps three times - once for each dataset (Train, Test, and Validation).
+
+#### Export Train Dataset
+
+1. **Go to the Data Flow tab**
+   - Click on the "Data Flow" tab to see your data pipeline
+
+2. **Select the Train dataset**
+   - Click on the Train dataset icon in your flow
+
+3. **Add export destination**
+   - Click the "+" button
+   - Click "Export"
+   - Click "Add destination"
+
+4. **Configure the export**
+   - **Dataset Name**: **vijay_data_train**
+   - **Amazon S3 Location**: Select your S3 bucket location
+   - **Export Settings**: **Default**
+   - **Partitioning**: **1**
+   - Click "Add and Export"
+
+5. **Configure the job**
+   - Click on **"Advanced"**
+   - Turn off **"Auto Job Configuration"**
+   - **Job Name**: **vijay-data-train-job**
+   - Click "Export"
+
+#### Export Test Dataset
+
+Repeat the same steps for the Test dataset:
+- Dataset Name: **vijay_data_test**
+- Job Name: **vijay-data-test-job**
+
+#### Export Validation Dataset
+
+Repeat the same steps for the Validation dataset:
+- Dataset Name: **vijay_data_validation**
+- Job Name: **vijay-data-validation-job**
+
+### Monitor Export Jobs
+
+All 3 job statuses can be found under:
+**AWS SageMaker AI → Data Preparation → Processing Jobs**
+
+You'll see all three jobs running or completed. Wait for all jobs to show "Completed" status before proceeding to model training.
+
+![Export Datasets to S3](images/VijayExportDataSetsToS3.png)
+
+Congratulations! Your data is now fully prepared, cleaned, and exported to S3, ready for machine learning model training!
+
+---
+
+**What's Next?**
+
+Now that your data is prepared and stored in S3, you can:
+- Train machine learning models using SageMaker
+- Experiment with different algorithms (XGBoost, Random Forest, etc.)
+- Build and deploy prediction models
+- Iterate on your data preparation if needed
+
+Remember to log out of Canvas properly to avoid unnecessary charges!
